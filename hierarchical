@@ -1,0 +1,23 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import AgglomerativeClustering
+
+# Load dataset
+dataset = pd.read_csv("Mall_Customers.csv")
+
+# Select features
+X = dataset.iloc[:, [3,4]].values
+
+# Apply Hierarchical Clustering
+model = AgglomerativeClustering(n_clusters=5)
+
+y_hc = model.fit_predict(X)
+
+# Visualization
+plt.scatter(X[:,0], X[:,1], c=y_hc)
+
+plt.title("Hierarchical Clustering")
+plt.xlabel("Annual Income")
+plt.ylabel("Spending Score")
+
+plt.show()
