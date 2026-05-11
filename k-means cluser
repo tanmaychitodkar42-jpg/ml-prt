@@ -1,0 +1,23 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Load dataset
+dataset = pd.read_csv("Mall_Customers.csv")
+
+X = dataset.iloc[:, [3,4]].values
+
+# Apply KMeans
+model = KMeans(n_clusters=5, random_state=0)
+
+y_kmeans = model.fit_predict(X)
+
+# Visualization
+plt.scatter(X[:,0], X[:,1], c=y_kmeans)
+
+# Centroids
+plt.scatter(model.cluster_centers_[:,0],
+            model.cluster_centers_[:,1],
+            s=300)
+
+plt.show()
